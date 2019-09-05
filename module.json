@@ -3,6 +3,7 @@
     "alias": "novasettings",
     "description": "",
     "keywords": [],
+    "active": 1,
     "order": 0,
     "providers": [
         "Epigra\\NovaSettings\\Providers\\NovaSettingsServiceProvider"
