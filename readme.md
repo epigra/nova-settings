@@ -14,6 +14,7 @@ To publish the database migration(s) configuration of `akaunting/setting`
 
 ```bash
 php artisan vendor:publish --tag=setting
+php artisan vendor:publish --provider=Epigra\NovaSettings\Providers\NovaSettingsServiceProvider
 php artisan migrate
 ```
 
@@ -30,6 +31,7 @@ public function tools()
     ];
 }
 ```
+
 
 ## Usage
 
@@ -56,6 +58,14 @@ If you want the value of the setting to be formatted before it's returned, pass 
     return $value;
 });
 ```
+
+## Configuration
+
+### Restart queue after settings are saved
+
+If your project uses queue it is possible that you'll have to restart it each time settings are updated. 
+This feature is turned off per default. You may turn it on by changing `restart_queue` value from 
+`false` to `true` under `config/nova-settings.php`.
 
 # Credits
 

@@ -18,7 +18,7 @@ class NovaSettingsServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'nova-settings');
-        
+
         $this->app->booted(function () {
             $this->routes();
         });
@@ -33,6 +33,9 @@ class NovaSettingsServiceProvider extends ServiceProvider
                 __DIR__ . '/../database/migrations' => database_path('migrations'),
             ], 'migrations');
         }
+
+        $this->publishes([__DIR__ . '/../../config/nova-settings.php' => config_path('nova-settings.php')],
+            'config');
     }
 
     /**
