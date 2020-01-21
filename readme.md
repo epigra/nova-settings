@@ -63,7 +63,7 @@ If you want the value of the setting to be formatted before it's returned, pass 
 
 ### Restart queue after settings are saved
 
-If you project uses queue it is possible that you'll have to restart it each time settings are updated. 
+If your project uses queue it is possible that you'll have to restart it each time settings are updated. 
 This feature is turned off per default. You may turn it on by changing `restart_queue` value from 
 `false` to `true` under `config/nova-settings.php`.
 
