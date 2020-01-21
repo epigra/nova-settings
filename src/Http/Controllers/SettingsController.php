@@ -5,6 +5,8 @@ namespace Epigra\NovaSettings\Http\Controllers;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use Epigra\NovaSettings\NovaSettingsTool;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Log;
 use Laravel\Nova\Contracts\Resolvable;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -40,6 +42,10 @@ class SettingsController extends Controller
         });
 
         setting()->save();
+
+        if (config('nova-settings.restart_queue', false)) {
+            Artisan::call('queue:restart');
+        }
 
         return response('', 204);
     }
