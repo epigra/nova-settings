@@ -1,28 +1,27 @@
 {
     "name": "epigra/nova-settings",
     "description": "A Laravel Nova tool for editing custom settings using native Nova fields.",
+    "license": "proprietary",
     "authors": [
         {
             "name": "Uğur Aydoğdu",
             "email": "ugur.aydogdu@epigra.com"
         }
     ],
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Epigra\\NovaSettings\\Providers\\NovaSettingsServiceProvider"
-            ],
-            "aliases": {
-                
-            }
-        }
-    },
     "require": {
         "akaunting/setting": "^1.1"
     },
     "autoload": {
         "psr-4": {
-            "Epigra\\NovaSettings\\": "src"
+            "Epigra\\NovaSettings\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Epigra\\NovaSettings\\Providers\\NovaSettingsServiceProvider"
+            ],
+            "aliases": []
         }
     }
 }
