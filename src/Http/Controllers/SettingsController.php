@@ -2,9 +2,9 @@
 
 namespace Epigra\NovaSettings\Http\Controllers;
 
-use Illuminate\Routing\Controller;
-use Illuminate\Http\Request;
 use Epigra\NovaSettings\NovaSettingsTool;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 use Laravel\Nova\Contracts\Resolvable;
@@ -17,7 +17,7 @@ class SettingsController extends Controller
         $fields = collect(NovaSettingsTool::getSettingsFields());
 
         $fields->whereInstanceOf(Resolvable::class)->each(function (&$field) {
-            if (!empty($field->attribute)) {
+            if (! empty($field->attribute)) {
                 $field->resolve([$field->attribute => setting($field->attribute)]);
             }
         });
@@ -30,15 +30,16 @@ class SettingsController extends Controller
         $fields = collect(NovaSettingsTool::getSettingsFields());
 
         $fields->whereInstanceOf(Resolvable::class)->each(function ($field) use ($request) {
-            if (empty($field->attribute)) return;
+            if (empty($field->attribute)) {
+                return;
+            }
 
-            $tempResource =  new \stdClass;
+            $tempResource = new \stdClass;
             $field->fill($request, $tempResource);
 
             if (property_exists($tempResource, $field->attribute)) {
-                setting([$field->attribute => $tempResource->{$field->attribute} ]);
+                setting([$field->attribute => $tempResource->{$field->attribute}]);
             }
-
         });
 
         setting()->save();

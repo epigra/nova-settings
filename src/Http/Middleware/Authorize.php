@@ -2,8 +2,8 @@
 
 namespace Epigra\NovaSettings\Http\Middleware;
 
-use Laravel\Nova\Nova;
 use Epigra\NovaSettings\NovaSettingsTool;
+use Laravel\Nova\Nova;
 
 class Authorize
 {
