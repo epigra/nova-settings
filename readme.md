@@ -14,7 +14,7 @@ To publish the database migration(s) configuration of `akaunting/setting`
 
 ```bash
 php artisan vendor:publish --tag=setting
-php artisan vendor:publish --provider=Epigra\NovaSettings\Providers\NovaSettingsServiceProvider
+php artisan vendor:publish --tag=nova-settings
 php artisan migrate
 ```
 
@@ -42,7 +42,7 @@ Define the fields in your `NovaServiceProvider`'s `boot()` function by calling `
 ```php
 \Epigra\NovaSettings\NovaSettingsTool::setSettingsFields([
     Text::make('Some setting', 'some_setting'),
-    Number::make('A number', 'a_number').
+    Number::make('A number', 'a_number')
 ]);
 ```
 
