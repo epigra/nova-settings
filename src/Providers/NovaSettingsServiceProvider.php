@@ -35,7 +35,7 @@ class NovaSettingsServiceProvider extends ServiceProvider
         }
 
         $this->publishes([__DIR__.'/../../config/nova-settings.php' => config_path('nova-settings.php')],
-            'config');
+            'nova-settings');
     }
 
     /**
