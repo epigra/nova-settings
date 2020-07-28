@@ -7,13 +7,11 @@ use Laravel\Nova\Tool;
 
 class NovaSettingsTool extends Tool
 {
-    protected static $settingsFields = [];
-    protected static $customFormatter;
+    protected static $fields = [];
 
     public function boot()
     {
         Nova::script('nova-settings', __DIR__.'/../dist/js/tool.js');
-        Nova::style('nova-settings', __DIR__.'/../dist/css/tool.css');
     }
 
     public function renderNavigation()
@@ -22,24 +20,33 @@ class NovaSettingsTool extends Tool
     }
 
     /**
-     * Define settings fields and an optional custom format function.
+     * Define settings fields.
      *
-     * @param array $settingsFields Array of Nova fields to be displayed.
-     * @param \Closure $customFormatter A function that takes key and value as arguments, formats and returns the value.
+     * @param array|callable $fields Array of fields/panels to be displayed or callable that returns an array.
      **/
-    public static function setSettingsFields($settingsFields = [], $customFormatter = null)
+    public static function addSettingsFields($fields = [])
     {
-        self::$settingsFields = $settingsFields;
-        self::$customFormatter = $customFormatter;
+        if (is_callable($fields)) {
+            $fields = [$fields];
+        }
+        self::$fields = array_merge(self::$fields, $fields ?? []);
     }
 
-    public static function getSettingsFields()
+    public static function getFields()
     {
-        return self::$settingsFields;
-    }
+        $rawFields = array_map(function ($fieldItem) {
+            return is_callable($fieldItem) ? call_user_func($fieldItem) : $fieldItem;
+        }, self::$fields);
 
-    public static function getCustomFormatter()
-    {
-        return self::$customFormatter;
+        $fields = [];
+        foreach ($rawFields as $rawField) {
+            if (is_array($rawField)) {
+                $fields = array_merge($fields, $rawField);
+            } else {
+                $fields[] = $rawField;
+            }
+        }
+
+        return $fields;
     }
 }

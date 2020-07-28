@@ -23,7 +23,7 @@
           :disabled="isUpdating"
           :processing="isUpdating"
         >
-          {{ __('novaSettings.saveButtonText') }}
+          {{ __('Save Settings') }}
         </progress-button>
       </div>
     </form>
@@ -34,7 +34,7 @@
           <h4 class="font-normal text-80">Error</h4>
         </div>
         <div class="w-3/4 py-4">
-          <p class="text-90">{{ __('novaSettings.noSettingsFieldsText') }}</p>
+          <p class="text-90">{{ __('No Settings fields defined') }}</p>
         </div>
       </div>
     </div>
@@ -88,7 +88,7 @@ export default {
           return;
         }
 
-        this.$toasted.show(this.__('novaSettings.settingsSuccessToast'), {
+        this.$toasted.show(this.__('Settings saved successfully'), {
           type: 'success',
         });
 

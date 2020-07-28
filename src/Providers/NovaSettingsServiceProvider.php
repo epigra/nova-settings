@@ -2,11 +2,11 @@
 
 namespace Epigra\NovaSettings\Providers;
 
-use Laravel\Nova\Nova;
+use Epigra\NovaSettings\Http\Middleware\Authorize;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Epigra\NovaSettings\Http\Middleware\Authorize;
+use Laravel\Nova\Nova;
 
 class NovaSettingsServiceProvider extends ServiceProvider
 {
@@ -17,16 +17,14 @@ class NovaSettingsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__ . '../Resources/views', 'nova-settings');
-        $this->loadTranslations();
-
+        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'nova-settings');
 
         $this->registerRoutes();
 
         if ($this->app->runningInConsole()) {
             // Publish config
             $this->publishes([
-                __DIR__ . '/../Config/' => config_path(),
+                __DIR__.'/../Config/' => config_path(),
             ], 'config');
         }
     }
@@ -41,11 +39,11 @@ class NovaSettingsServiceProvider extends ServiceProvider
 
     protected function registerRoutes()
     {
-        if ($this->app->routesAreCached()) return;
+        if ($this->app->routesAreCached()) {
+            return;
+        }
 
         Route::middleware(['nova', Authorize::class])
-            ->group(__DIR__ . '/../Routes/api.php');
+            ->group(__DIR__.'/../Routes/api.php');
     }
-
-   
 }
