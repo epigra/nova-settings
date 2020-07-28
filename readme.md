@@ -37,35 +37,31 @@ public function tools()
 
 ### Registering fields
 
-Define the fields in your `NovaServiceProvider`'s `boot()` function by calling `NovaSettings::setSettingsFields()`.
+Define the fields in your `NovaServiceProvider`'s `boot()` function by calling `NovaSettings::addSettingsFields()`.
 
 ```php
-\Epigra\NovaSettings\NovaSettingsTool::setSettingsFields([
+\Epigra\NovaSettings\NovaSettingsTool::addSettingsFields([
     Text::make('Some setting', 'some_setting'),
     Number::make('A number', 'a_number')
 ]);
-```
 
-### Custom formatting
+// OR
 
-If you want the value of the setting to be formatted before it's returned, pass a `Closure` as the second parameter to the `setSettingsFields` function. The function receives two arguments: `key` and `value`.
-
-```php
-\Epigra\NovaSettings\NovaSettingsTool::setSettingsFields([
-    // ... fields
-], function ($key, $value) {
-    if ($key === 'some_boolean_value') return boolval($value);
-    return $value;
+// Using a callable
+\Epigra\NovaSettings\NovaSettingsTool::addSettingsFields(function() {
+  return [
+    Text::make('Some setting', 'some_setting'),
+    Number::make('A number', 'a_number'),
+  ];
 });
 ```
 
 ## Configuration
 
-### Restart queue after settings are saved
+### reload_page_on_save 
 
-If your project uses queue it is possible that you'll have to restart it each time settings are updated. 
-This feature is turned off per default. You may turn it on by changing `restart_queue` value from 
-`false` to `true` under `config/nova-settings.php`.
+This feature is turned off per default. You may turn it on by changing `reload_page_on_save` value from 
+`false` to `true` under `config/nova-settings.php` to reload the entire page on save. Useful when updating any Nova UI related settings.
 
 # Credits
 
