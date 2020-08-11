@@ -18,7 +18,9 @@
     },
     "extra": {
         "laravel": {
-            "providers": [],
+            "providers": [
+                "Epigra\\NovaSettings\\Providers\\NovaSettingsServiceProvider"
+            ],
             "aliases": []
         }
     }
