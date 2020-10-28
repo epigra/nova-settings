@@ -11,6 +11,8 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .idea
+/.idea
+/src/.idea
 .env.dusk.local
 .env.testing
 /public/mix-manifest.json

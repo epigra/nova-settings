@@ -13,8 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('api')->name('api::')->group(function () {
-    Route::get('settings/{key}', 'SettingsApiController@findByKey');
+Route::namespace('\Epigra\NovaSettings\Http\Controllers')->group(function () {
+    Route::prefix('nova-vendor/nova-settings')->group(function () {
+        Route::get('/settings', 'SettingsController@get');
+        Route::post('/settings', 'SettingsController@save');
+    });
+
+    Route::delete('/nova-api/nova-settings/settings/field/{fieldName}', 'SettingsController@deleteImage');
 });
 
 

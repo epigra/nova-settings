@@ -9,7 +9,8 @@
         }
     ],
     "require": {
-        "akaunting/setting": "^1.1"
+        "akaunting/setting": "^1.1",
+        "epigra/core": "dev-master"
     },
     "autoload": {
         "psr-4": {
@@ -18,9 +19,7 @@
     },
     "extra": {
         "laravel": {
-            "providers": [
-                "Epigra\\NovaSettings\\Providers\\NovaSettingsServiceProvider"
-            ],
+            "providers": [],
             "aliases": []
         }
     }
