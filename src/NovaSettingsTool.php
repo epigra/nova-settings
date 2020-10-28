@@ -16,7 +16,7 @@ class NovaSettingsTool extends Tool
 
     public function renderNavigation()
     {
-        return view('nova-settings::navigation');
+        return view('novasettings::navigation');
     }
 
     /**
