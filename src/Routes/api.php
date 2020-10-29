@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('api')->name('api::')->group(function () {
+    Route::get('settings', 'SettingsApiController@index');
     Route::get('settings/{key}', 'SettingsApiController@findByKey');
 });
 

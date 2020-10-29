@@ -2,6 +2,20 @@
 
 /**
  * @OA\Get(
+ *     path="/settings",
+ *     tags={"Settings"},
+ *     summary="Returns all setting",
+ *     description="Returns aall setting in project",
+ *     @OA\Response(
+ *         response=200,
+ *         description="successful operation",
+ *         @OA\JsonContent()
+ *     )
+ * )
+ */
+
+/**
+ * @OA\Get(
  *     path="/settings/{key}",
  *     tags={"Settings"},
  *     summary="Returns a setting by key",
