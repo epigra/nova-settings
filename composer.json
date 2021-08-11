@@ -10,7 +10,7 @@
     ],
     "require": {
         "akaunting/setting": "^1.1",
-        "epigra/core": "dev-master"
+        "epigra/core": "^11.0"
     },
     "autoload": {
         "psr-4": {
