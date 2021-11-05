@@ -23,5 +23,6 @@
   "dependencies": {
     "laravel-nova": "^1.2.2",
     "vue": "^2.6.11"
-  }
+  },
+  "abandoned": "true"
 }
